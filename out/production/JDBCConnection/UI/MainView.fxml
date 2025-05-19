@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MainController">
+    <top>
+        <VBox spacing="10" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="5" left="10"/>
+            </padding>
+
+            <!-- 表选择区域 -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="选择数据表:"/>
+                <ComboBox fx:id="tableSelector" prefWidth="150.0" onAction="#handleTableSelection"/>
+                <Button text="添加新记录" onAction="#handleAddRecord"/>
+            </HBox>
+
+            <!-- 查询条件区域 -->
+            <GridPane fx:id="queryPane" hgap="10" vgap="5">
+                <padding>
+                    <Insets top="5" right="0" bottom="5" left="0"/>
+                </padding>
+
+                <!-- 查询字段会动态添加 -->
+
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                </columnConstraints>
+            </GridPane>
+
+            <HBox alignment="CENTER_RIGHT">
+                <Button text="查询" onAction="#handleQuery" prefWidth="80.0"/>
+                <padding>
+                    <Insets top="0" right="0" bottom="5" left="0"/>
+                </padding>
+            </HBox>
+
+            <Separator/>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="dataTable">
+            <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem text="更新数据" onAction="#handleUpdateRecord"/>
+                        <MenuItem text="删除数据" onAction="#handleDeleteRecord"/>
+                    </items>
+                </ContextMenu>
+            </contextMenu>
+            <placeholder>
+                <Label text="无数据显示"/>
+            </placeholder>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <padding>
+                <Insets top="5" right="10" bottom="5" left="10"/>
+            </padding>
+            <Label fx:id="statusLabel" text="就绪"/>
+        </HBox>
+    </bottom>
+</BorderPane>

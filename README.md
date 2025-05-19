@@ -1,0 +1,2 @@
+# JDBC_SQLSever
+使用jdbc连接sqlsever数据库，并且实现单表图形化增删改查
