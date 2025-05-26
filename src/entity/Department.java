@@ -13,7 +13,7 @@ public class Department {
         this.head = head;
     }
     
-    // Getters and Setters
+    //基本函数
     public String getDno() {
         return dno;
     }

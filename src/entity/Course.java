@@ -17,7 +17,7 @@ public class Course {
         this.teacher = teacher;
     }
     
-    // Getters and Setters
+    //基本函数
     public String getCno() {
         return cno;
     }

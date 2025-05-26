@@ -13,7 +13,7 @@ public class Grade {
         this.score = score;
     }
     
-    // Getters and Setters
+    //基本函数
     public String getSno() {
         return sno;
     }

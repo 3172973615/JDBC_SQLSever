@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.*;
 
 public class MainController implements Initializable {
-
+    //页面组件
     @FXML private ComboBox<String> tableSelector;
     @FXML private GridPane queryPane;
     @FXML private TableView<Map<String, Object>> dataTable;
@@ -143,14 +143,16 @@ public class MainController implements Initializable {
     }
 
     private void setupTableColumns(String tableName) {
+        // 清空现有列和数据
         dataTable.getColumns().clear();
         dataTable.getItems().clear();
-
+        // 获取表定义信息
         List<TableColumnInfo> columns = tableColumnsInfo.get(tableName);
         if (columns == null) return;
-
+        // 为每个列创建TableColumn对象
         for (TableColumnInfo columnInfo : columns) {
             TableColumn<Map<String, Object>, Object> column = new TableColumn<>(columnInfo.getDisplayName());
+            // 设置单元格值工厂，从Map中提取数据
             column.setCellValueFactory(data -> {
                 Object value = data.getValue().get(columnInfo.getColumnName());
                 return new SimpleObjectProperty<>(value);
@@ -169,7 +171,7 @@ public class MainController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "查询错误", null, "查询数据时发生错误: " + e.getMessage());
         }
     }
-
+    //数据库比较大时应该通过数据库语言过滤，而不是读到内存再处理
     private void refreshTable() {
         if (currentTable == null) return;
 
@@ -196,8 +198,10 @@ public class MainController implements Initializable {
             }
 
             // 过滤数据
+            // 创建行数据集合
             List<Map<String, Object>> filteredData = new ArrayList<>();
             if (dataList != null) {
+                // 转换实体对象为Map行数据
                 for (Object obj : dataList) {
                     Map<String, Object> row = new HashMap<>();
 
